@@ -1,4 +1,4 @@
-# Mongoose Node.js Express TypeScript application boilerplate with best practices for API development.
+# Mongoose Node.js Express TypeScript application with best practices for API development.
 
 ![image](https://user-images.githubusercontent.com/10678997/57565876-01281b00-73f8-11e9-8d86-911faa4a6c0f.png)
 
