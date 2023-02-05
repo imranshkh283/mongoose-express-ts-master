@@ -7,6 +7,7 @@ import user from "./routes/api/user";
 import profile from "./routes/api/profile";
 import category from './routes/api/category';
 import subcategory from "./routes/api/subcategory";
+import product from './routes/api/product';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/api/user", user);
 app.use("/api/profile", profile);
 app.use("/api/category", category);
 app.use("/api/subcategory", subcategory);
+app.use("/api/product", product);
 const port = app.get("port");
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)
