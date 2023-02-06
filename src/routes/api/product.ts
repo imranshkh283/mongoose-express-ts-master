@@ -21,24 +21,24 @@ router.get("/", async (req: Request, res: Response) => {
                     from: "subcategories",       // other table name
                     localField: "subcategory",   // name of users table field
                     foreignField: "_id", // name of userinfo table field
-                    as: "sub_category"         // alias for userinfo table
+                    as: "subcat_info"         // alias for userinfo table
                 }
             },
-            //{   $unwind:"$user_info" },     // $unwind used for getting data in object or for one record only
+            //{   $unwind:"$subcat_info" },     // $unwind used for getting data in object or for one record only
         
             // Join with user_role table
-            /* {
+            {
                 $lookup:{
-                    from: "subcategory", 
-                    localField: "subcategory", 
+                    from: "categories", 
+                    localField: "category", 
                     foreignField: "_id",
-                    as: "user_role"
+                    as: "cat_info"
                 }
-            }, */
-            /* {   $unwind:"$user_role" },
+            },
+            //{   $unwind:"$cat_info" },
         
             // define some conditions here 
-            {
+            /*{
                 $match:{
                     $and:[{"userName" : "admin"}]
                 }

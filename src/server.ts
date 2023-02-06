@@ -8,7 +8,7 @@ import profile from "./routes/api/profile";
 import category from './routes/api/category';
 import subcategory from "./routes/api/subcategory";
 import product from './routes/api/product';
-
+import customer from "./routes/api/customer";
 const app = express();
 
 // Connect to MongoDB
@@ -29,9 +29,11 @@ app.get("/", (_req, res) => {
 app.use("/api/auth", auth);
 app.use("/api/user", user);
 app.use("/api/profile", profile);
-app.use("/api/category", category);
-app.use("/api/subcategory", subcategory);
 app.use("/api/product", product);
+app.use("/api/category", category);
+app.use("/api/customer", customer);
+app.use("/api/subcategory", subcategory);
+
 const port = app.get("port");
 const server = app.listen(port, () =>
   console.log(`Server started on port ${port}`)

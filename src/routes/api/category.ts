@@ -43,7 +43,32 @@ router.post("/create", async (req: Request, res: Response) => {
         console.error(err.message);
         res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send("Server Error");
     }
-}
+    }
 )
+
+router.post("/update", [ check("categoryname", "Category Name is required").not().isEmpty() ], async (req: Request, res: Response) => {
+    
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(HttpStatusCodes.BAD_REQUEST)
+        .json({ errors: errors.array() });
+    }
+    
+    const { categoryname} = req.body;
+    try {
+        
+        let prod: ICategory = await Category.findOne({ categoryname });
+        if(prod){
+            return res.send(categoryname);
+        }
+    } catch (err) {
+        console.error(err.message);
+        res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send("Server Error");
+    }
+    //const catFields: TCategory = {}
+
+    //res.send(" Category Update API works");
+});
 
 export default router;
