@@ -9,11 +9,13 @@ import Payload from "../../types/Payload";
 import Request from "../../types/Request";
 
 import auth from "../../middleware/auth";
+import { cauth } from "../../middleware/cauth";
+
 import Customer, {ICustomer, TCustomer} from '../../models/customers';
 import CustomerProfile, { ICustomerProfile,TCustomerProfile } from '../../models/CustomersProfile';
 const router: Router = Router(); 
 
-router.get('/', (req,res) => {
+router.get('/', cauth, async (req,res) => {
     res.send('Customer API');
 })
 

@@ -5,7 +5,6 @@ import HttpStatusCodes from "http-status-codes";
 import Product, { TProducts, IProduct } from "../../models/Product";
 import Customer, { ICustomer } from "../../models/Customers";
 import Cart, {ICart, TCart} from "../../models/Cart";
-import { updateAwait } from "typescript";
 
 const router: Router = Router();
 
@@ -104,14 +103,15 @@ router.get('/add-to-cart', async (req: Request, res: Response) => {
 })
 
 router.get('/descrease-cart/:id', async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(HttpStatusCodes.BAD_REQUEST).json({ errors: errors.array() });
-    }
-
-    let customerId = req.params.id;
-    const { productId } = req.body;
+    
     try {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(HttpStatusCodes.BAD_REQUEST).json({ errors: errors.array() });
+        }
+        let customerId = req.params.id;
+        const { productId } = req.body;
+        
         const cart = await Cart.find({ customer: customerId, productId: productId })
         if(cart.length == 0){
             return res.status(HttpStatusCodes.BAD_REQUEST).json({
@@ -160,6 +160,7 @@ router.get('/descrease-cart/:id', async (req: Request, res: Response) => {
 })
 
 router.get('/increase-cart/:id', async (req: Request, res: Response) => {
+    try {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(HttpStatusCodes.BAD_REQUEST).json({ errors: errors.array() });
@@ -167,7 +168,7 @@ router.get('/increase-cart/:id', async (req: Request, res: Response) => {
 
     let customerId = req.params.id;
     const { productId } = req.body;
-    try {
+    
         const cart = await Cart.find({ customer: customerId, productId: productId })
         if(cart.length == 0){
             return res.status(HttpStatusCodes.BAD_REQUEST).json({
@@ -179,7 +180,7 @@ router.get('/increase-cart/:id', async (req: Request, res: Response) => {
         }
         for(const index of cart){
             if(index.productId.toString() === productId && index.customer.toString() === customerId){
-                if(index.qty > 1){
+                if(index.qty){
                     let _descQty = index.qty.valueOf();
                     _descQty++;
                     const descFields = {
@@ -196,15 +197,10 @@ router.get('/increase-cart/:id', async (req: Request, res: Response) => {
 
                     return res.status(HttpStatusCodes.OK).json({
                         type: 'Success',
-                        message: 'ReduceByOne',
+                        message: 'IncreaseByOne',
                     })
                 } else {
-                    await Cart.findOneAndDelete({customer: customerId, productId: productId})
-                    
-                    return res.status(HttpStatusCodes.OK).json({
-                        type: 'Success',
-                        message: 'cartEmpty',
-                    })
+                    res.json('else')
                 }
             }
         }
