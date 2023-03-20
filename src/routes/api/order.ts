@@ -22,7 +22,10 @@ router.get("/createOrder/:id" , async (req: Request, res: Response) => {
         let cart : TCart = await Cart.findOne({ customer: customerId });
         if(!cart){
             return res.status(HttpStatusCodes.BAD_REQUEST).json({
-                errors:
+                errors: [{
+                    type: HttpStatusCodes.BAD_REQUEST,
+                    message: 'noUserInCart',
+                }]
             })
         } else {
             res.json(cart);
