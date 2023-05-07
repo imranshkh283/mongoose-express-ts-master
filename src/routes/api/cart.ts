@@ -3,7 +3,7 @@ import { check, validationResult } from "express-validator";
 import HttpStatusCodes from "http-status-codes";
 
 import Product, { TProducts, IProduct } from "../../models/Product";
-import Customer, { ICustomer } from "../../models/Customers";
+// import Customer, { ICustomer } from "../../models/Customers";
 import Cart, {ICart, TCart} from "../../models/Cart";
 
 const router: Router = Router();

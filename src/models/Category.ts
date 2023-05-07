@@ -7,6 +7,7 @@ export type TCategory = {
 export interface ICategory extends TCategory,Document {}
 
 const categoryScheme: Schema = new Schema({
+    
     categoryname : {
         type: String,
         required: true,
