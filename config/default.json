@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://0.0.0.0:27017/school",
+  "mongoURI": "mongodb://localhost:27017/ecomm",
   "jwtSecret": "jwtSecretToken",
   "jwtExpiration": 360000
 }

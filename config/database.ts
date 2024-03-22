@@ -1,9 +1,9 @@
-import config from "config";
 import { connect } from "mongoose";
+import * as dotenv from "dotenv";
 
 const connectDB = async () => {
   try {
-    const mongoURI: string = config.get("mongoURI");
+    const mongoURI: string = process.env.mongoURI;
     await connect(mongoURI);
     console.log("MongoDB Connected...");
   } catch (err) {

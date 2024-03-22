@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import config from "config";
 import { Router, Response } from "express";
 import { check, validationResult } from "express-validator";
 import HttpStatusCodes from "http-status-codes";
@@ -74,8 +73,8 @@ router.post(
 
       jwt.sign(
         payload,
-        config.get("jwtSecret"),
-        { expiresIn: config.get("jwtExpiration") },
+        process.env.jwtSecret,
+        { expiresIn: process.env.jwtExpiration },
         (err, token) => {
           if (err) throw err;
           res.json({ token });

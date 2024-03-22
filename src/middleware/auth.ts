@@ -1,4 +1,3 @@
-import config from "config";
 import { Response, NextFunction } from "express";
 import HttpStatusCodes from "http-status-codes";
 import jwt from "jsonwebtoken";
@@ -6,7 +5,7 @@ import jwt from "jsonwebtoken";
 import Payload from "../types/Payload";
 import Request from "../types/Request";
 
-export default function(req: Request, res: Response, next: NextFunction) {
+export default function (req: Request, res: Response, next: NextFunction) {
   // Get token from header
   const token = req.header("x-auth-token");
 
@@ -18,7 +17,7 @@ export default function(req: Request, res: Response, next: NextFunction) {
   }
   // Verify token
   try {
-    const payload: Payload | any = jwt.verify(token, config.get("jwtSecret"));
+    const payload: Payload | any = jwt.verify(token, process.env.jwtSecret);
     req.userId = payload.userId;
     next();
   } catch (err) {

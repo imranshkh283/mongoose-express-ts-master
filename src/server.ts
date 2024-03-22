@@ -1,18 +1,18 @@
 import bodyParser from "body-parser";
 import express from "express";
-
+import * as dotenv from "dotenv";
 import connectDB from "../config/database";
 import auth from "./routes/api/auth";
 import user from "./routes/api/user";
 import profile from "./routes/api/profile";
-import category from './routes/api/category';
+import category from "./routes/api/category";
 import subcategory from "./routes/api/subcategory";
-import product from './routes/api/product';
+import product from "./routes/api/product";
 import customer from "./routes/api/customer";
 import cart from "./routes/api/cart";
-import order from './routes/api/order';
+import order from "./routes/api/order";
 const app = express();
-
+dotenv.config();
 // Connect to MongoDB
 connectDB();
 
@@ -37,7 +37,6 @@ app.use("/api/subcategory", subcategory);
 app.use("/api/customer", customer);
 app.use("/api/cart", cart);
 app.use("/api/order", order);
-
 
 const port = app.get("port");
 const server = app.listen(port, () =>
