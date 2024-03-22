@@ -1,13 +1,6 @@
-import bcrypt from "bcryptjs";
 import { Router, Response } from "express";
 import { check, validationResult } from "express-validator";
-import gravatar from "gravatar";
-import HttpStatusCodes from "http-status-codes";
-import jwt from "jsonwebtoken";
 
-import Payload from "../../types/Payload";
-import Request from "../../types/Request";
-import User, { IUser, TUser } from "../../models/User";
 import { userRegister } from "../../controller/user.controller";
 const router: Router = Router();
 
