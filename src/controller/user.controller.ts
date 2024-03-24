@@ -57,3 +57,8 @@ export const userAlreadyExist = async (req: Request, res: Response) => {
 
   return user;
 };
+
+export const findUserByEmail = async (email: string) => {
+  const user = await User.findOne({ email });
+  return user;
+};
