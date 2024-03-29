@@ -6,6 +6,7 @@ import { passwordCompare } from "../utils/bcryptUtils";
 import Payload from "Payload";
 import { generateToken } from "../utils/jwtToken";
 import User, { IUser } from "../models/User";
+
 export const login = async (req: Request, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
