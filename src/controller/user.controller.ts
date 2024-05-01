@@ -47,7 +47,7 @@ export const userRegister = async (req: Request, res: Response) => {
   };
 
   const token = await generateToken(payload, process.env.jwtSecret, "1d");
-  res.status(HttpStatusCodes.CREATED).json({ token });
+  res.status(HttpStatusCodes.OK).json({ token });
 };
 
 export const userAlreadyExist = async (req: Request, res: Response) => {

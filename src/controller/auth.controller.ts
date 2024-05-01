@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
   let user = await findUserByEmail(email);
 
   if (!user) {
-    return res.status(HttpStatusCodes.BAD_REQUEST).json({
+    return res.status(HttpStatusCodes.UNAUTHORIZED).json({
       errors: [
         {
           msg: "Invalid Credentials",
@@ -48,7 +48,7 @@ export const login = async (req: Request, res: Response) => {
   const { _id, avatar } = user;
 
   const token = await generateToken(payload, process.env.jwtSecret, "1d");
-  res.status(HttpStatusCodes.CREATED).json({ _id, avatar, email, token });
+  res.status(HttpStatusCodes.OK).json({ _id, avatar, email, token });
 };
 
 export const IAuth = async (req: Request, res: Response) => {
