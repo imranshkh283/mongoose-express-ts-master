@@ -7,7 +7,8 @@ import Request from "../types/Request";
 
 export default function (req: Request, res: Response, next: NextFunction) {
   // Get token from header
-  const token = req.header("x-auth-token");
+  const token = req.header("authorization");
+  console.log(token);
 
   // Check if no token
   if (!token) {

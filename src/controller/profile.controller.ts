@@ -13,7 +13,6 @@ export const insertProfile = async (req: Request, res: Response) => {
       .status(HttpStatusCodes.BAD_REQUEST)
       .json({ errors: errors.array() });
   }
-
   const {
     firstName,
     lastName,

@@ -1,20 +1,20 @@
 import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { ACCESS_TOKEN_NAME, API_BASE_URL } from "../../constants/apiContants";
+import { ACCESS_TOKEN_NAME } from "../../constants/apiContants";
 import axios from "axios";
 function Home(props) {
     useEffect(() => {
         axios
-            .get(API_BASE_URL + "/user/me", {
+            .get("http://localhost:5000/api/profile/me", {
                 headers: { token: localStorage.getItem(ACCESS_TOKEN_NAME) }
             })
             .then(function (response) {
                 if (response.status !== 200) {
-                    redirectToLogin();
+                    // redirectToLogin();
                 }
             })
             .catch(function (error) {
-                redirectToLogin();
+                // redirectToLogin();
             });
     });
     function redirectToLogin() {

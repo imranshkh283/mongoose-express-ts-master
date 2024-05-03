@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
-import { API_BASE_URL, ACCESS_TOKEN_NAME } from "../../constants/apiContants";
+import { ACCESS_TOKEN_NAME } from "../../constants/apiContants";
 import { withRouter } from "react-router-dom";
 
 function LoginForm(props) {
@@ -50,6 +50,7 @@ function LoginForm(props) {
     const redirectToRegister = () => {
         props.history.push("/register");
         props.updateTitle("Register");
+
     };
 
     return (

@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import LoginForm from "./components/LoginForm/LoginForm";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import Home from "./components/Home/Home";
+import ProfileForm from "./components/ProfileForm/ProfileForm";
 import PrivateRoute from "./utils/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AlertComponent from "./components/AlertComponent/AlertComponent";
@@ -34,8 +35,13 @@ function App() {
                 updateTitle={updateTitle}
               />
             </Route>
+
             <PrivateRoute path="/home">
               <Home />
+            </PrivateRoute>
+
+            <PrivateRoute path="/profile">
+              <ProfileForm />
             </PrivateRoute>
           </Switch>
           <AlertComponent
