@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./LoginForm.css";
 import { ACCESS_TOKEN_NAME } from "../../constants/apiContants";
@@ -18,6 +18,10 @@ function LoginForm(props) {
             [id]: value
         }));
     };
+
+    console.log(localStorage.getItem(ACCESS_TOKEN_NAME));
+    console.log(props);
+
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
@@ -47,6 +51,9 @@ function LoginForm(props) {
         props.updateTitle("Home");
         props.history.push("/home");
     };
+
+
+
     const redirectToRegister = () => {
         props.history.push("/register");
         props.updateTitle("Register");
